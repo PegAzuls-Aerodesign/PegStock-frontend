@@ -24,10 +24,17 @@
     "@types/node": "^20",
     "@types/react": "19.1.5",
     "@types/react-dom": "19.1.5",
-    "eslint": "^9",
+    "@typescript-eslint/eslint-plugin": "^8.32.1",
+    "@typescript-eslint/parser": "^8.32.1",
+    "eslint": "^9.27.0",
     "eslint-config-next": "15.3.2",
+    "eslint-config-prettier": "^10.1.5",
+    "eslint-plugin-next": "^0.0.0",
+    "eslint-plugin-prettier": "^5.4.0",
+    "eslint-plugin-unused-imports": "^4.1.4",
     "husky": "^9.1.7",
     "postcss": "^8.5.3",
+    "prettier": "^3.5.3",
     "tailwindcss": "^4.1.7",
     "typescript": "^5"
   }

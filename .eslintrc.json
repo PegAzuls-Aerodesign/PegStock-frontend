@@ -1,0 +1,63 @@
+{
+  // Extende configurações recomendadas do Next.js, ESLint e Prettier para padronização de código.
+  "extends": ["next/core-web-vitals", "eslint:recommended", "prettier"],
+
+  // Regras gerais aplicadas a todos os arquivos.
+  "rules": {
+    "curly": "warn", // Exige uso de chaves em blocos.
+    "block-scoped-var": "warn", // Garante variáveis em blocos.
+    "eqeqeq": "warn", // Exige uso de === e !==.
+    "no-var": "warn", // Proíbe uso de var.
+    "prefer-const": "warn", // Prefere const quando possível.
+    "eol-last": "warn", // Exige linha em branco ao final do arquivo.
+    "prefer-arrow-callback": "warn", // Prefere arrow functions como callbacks.
+    "no-restricted-properties": [
+      "error",
+      { "object": "describe", "property": "only" }, // Impede uso de describe.only em testes.
+      { "object": "it", "property": "only" } // Impede uso de it.only em testes.
+    ]
+  },
+
+  // Regras específicas para arquivos TypeScript.
+  "overrides": [
+    {
+      "files": ["**/*.ts", "**/*.tsx"],
+      "parser": "@typescript-eslint/parser", // Parser para TypeScript.
+      "parserOptions": {
+        "ecmaVersion": "latest",
+        "sourceType": "module",
+        "project": "./tsconfig.json"
+      },
+      "extends": ["plugin:@typescript-eslint/recommended-type-checked"], // Regras recomendadas do TypeScript.
+      "rules": {
+        "eol-last": "off", // Desativa exigência de linha em branco ao final do arquivo para TS.
+        "require-await": "warn", // Alerta para funções async sem await.
+        "n/no-missing-import": "off", // Desativa regra de importações faltantes do Node.
+        "n/no-unsupported-features/es-syntax": "off", // Permite sintaxe ES moderna.
+        "n/no-missing-require": "off", // Desativa regra de require faltante do Node.
+
+        "@typescript-eslint/consistent-type-definitions": ["warn", "interface"], // Prefere interface ao invés de type.
+        "@typescript-eslint/no-explicit-any": [
+          "error",
+          { "fixToUnknown": true } // Proíbe any, sugere unknown.
+        ],
+        "@typescript-eslint/no-unused-vars": [
+          "warn",
+          { "argsIgnorePattern": "^_", "destructuredArrayIgnorePattern": "^_" } // Ignora variáveis iniciadas com _.
+        ],
+        "@typescript-eslint/consistent-type-imports": [
+          "error",
+          { "prefer": "type-imports", "fixStyle": "inline-type-imports" } // Prefere importação de tipos separada.
+        ],
+        "import/consistent-type-specifier-style": ["warn", "prefer-inline"], // Prefere especificação de tipo inline.
+        "@typescript-eslint/no-misused-promises": [
+          "warn",
+          { "checksVoidReturn": false } // Permite promises em funções void.
+        ],
+        "@typescript-eslint/no-empty-interface": "off", // Permite interfaces vazias.
+        "@typescript-eslint/no-empty-object-type": "off" // Permite tipos de objeto vazios.
+        // "@typescript-eslint/no-base-to-string": "off"
+      }
+    }
+  ]
+}
