@@ -2,8 +2,8 @@
 
 import React from "react";
 import { type FieldValues, type UseFormReturn } from "react-hook-form";
-import { Spinner } from "../spinner";
 import { Button } from "../ui/button";
+import { Spinner } from "../ui/spinner";
 
 interface Props {
   title: string;

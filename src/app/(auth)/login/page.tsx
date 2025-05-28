@@ -2,8 +2,8 @@
 
 import { EyeButton } from "@/components/form/eye-button";
 import { AuthTextInput } from "@/components/form/input/text-input";
-import { Spinner } from "@/components/spinner";
 import { Button } from "@/components/ui/button";
+import { Spinner } from "@/components/ui/spinner";
 import { cn } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import React from "react";
