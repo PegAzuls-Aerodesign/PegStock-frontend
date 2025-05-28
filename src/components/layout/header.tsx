@@ -10,7 +10,7 @@ const user = {
 
 export const Header: React.FC = () => {
   return (
-    <header className="h-header fixed top-0 left-0 flex w-screen items-center justify-end gap-2 bg-white p-4 px-8 shadow-2xl">
+    <header className="h-header fixed top-0 left-0 z-50 flex w-screen items-center justify-end gap-2 bg-white p-4 px-8 shadow-2xl">
       {user ? <HeaderUser /> : <Spinner />}
     </header>
   );

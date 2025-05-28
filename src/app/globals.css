@@ -14,6 +14,9 @@
   --color-brand-white-500: oklch(0.9551 0 0);
 
   --h-header: 4rem;
+  --h-breadcrumbs: 2rem;
+  --h-header-breadcrumbs: calc(var(--h-header) + var(--h-breadcrumbs));
+
   --w-sidebar-collapsed: 4rem;
   --w-sidebar-expanded: 16rem;
 }
@@ -26,6 +29,14 @@
 
 @layer dimensions {
   .h-header {
+    height: var(--h-header);
+  }
+
+  .h-breadcrumbs {
+    height: var(--h-breadcrumbs);
+  }
+
+  .h-header-breadcrumbs {
     height: var(--h-header);
   }
 

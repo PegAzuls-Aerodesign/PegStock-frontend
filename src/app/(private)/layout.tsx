@@ -1,7 +1,7 @@
 import { Header } from "@/components/layout/header";
 import React from "react";
 
-export default function PrivateLayout({
+export default function Layout({
   children,
 }: Readonly<{
   children: React.ReactNode;
@@ -9,11 +9,7 @@ export default function PrivateLayout({
   return (
     <React.Fragment>
       <Header />
-      <div className="flex-center h-screen w-screen pt-[var(--h-header)]">
-        <div className="container flex h-full min-h-4/5 flex-col items-center justify-around shadow-2xl">
-          {children}
-        </div>
-      </div>
+      <div className="flex-center h-screen w-screen">{children}</div>
     </React.Fragment>
   );
 }
