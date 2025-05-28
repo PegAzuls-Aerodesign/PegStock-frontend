@@ -15,6 +15,8 @@ const buttonVariants = cva(
         input:
           "w-full rounded-md border border-slate-400 bg-white px-3 py-2 font-normal text-slate-900 disabled:cursor-not-allowed",
         "destructive-ghost": "font-bold text-red-500 hover:bg-red-100",
+        "header-button":
+          "bg-white rounded-full border-1 border-gray-100 px-2 shadow-sm hover:bg-gray-50",
       },
       size: {
         default: "h-10 px-4 py-2",

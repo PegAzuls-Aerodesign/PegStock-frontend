@@ -12,10 +12,28 @@
   --color-brand-blue-900: oklch(0.12 0.08 256.06);
 
   --color-brand-white-500: oklch(0.9551 0 0);
+
+  --h-header: 4rem;
+  --w-sidebar-collapsed: 4rem;
+  --w-sidebar-expanded: 16rem;
 }
 
 @layer utilities {
   .flex-center {
     @apply flex items-center justify-center;
+  }
+}
+
+@layer dimensions {
+  .h-header {
+    height: var(--h-header);
+  }
+
+  .w-sidebar-collapsed {
+    width: var(--w-sidebar-collapsed);
+  }
+
+  .w-sidebar-expanded {
+    width: var(--w-sidebar-expanded);
   }
 }
