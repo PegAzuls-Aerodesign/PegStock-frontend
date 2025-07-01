@@ -1,4 +1,5 @@
-import { Header } from "@/components/layout/header";
+"use client";
+
 import React from "react";
 
 export default function Layout({
@@ -8,7 +9,6 @@ export default function Layout({
 }>) {
   return (
     <React.Fragment>
-      <Header />
       <div className="flex-center h-screen w-screen">{children}</div>
     </React.Fragment>
   );

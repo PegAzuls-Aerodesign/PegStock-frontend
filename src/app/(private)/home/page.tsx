@@ -1,18 +1,22 @@
-import { PrivateLayout } from "@/components/layout/private-layout";
-import Image from "next/image";
+import { SideNav } from "@/components/layout/sidenav";
 
 export default function HomePage() {
+  const items = [{ label: "Home", href: "/" }];
   return (
-    <PrivateLayout>
-      <main className="flex-center flex-col gap-4 p-4 px-8 lg:px-16">
-        <Image
-          src="/pegazuls-logo.svg"
-          alt="Next.js logo"
-          width={383}
-          height={380}
-          priority
-        />
-      </main>
-    </PrivateLayout>
+    <>
+      <SideNav items={items}>
+        <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
+          <div className="grid auto-rows-min gap-4 md:grid-cols-3">
+            <div className="aspect-video animate-pulse rounded-xl bg-red-500/50" />
+            <div className="aspect-video animate-pulse rounded-xl bg-yellow-500/50" />
+            <div className="aspect-video animate-pulse rounded-xl bg-blue-500/50" />
+            <div className="aspect-video animate-pulse rounded-xl bg-green-500/50" />
+            <div className="aspect-video animate-pulse rounded-xl bg-purple-500/50" />
+            <div className="bg-sidebar-accent aspect-video animate-pulse rounded-xl" />
+          </div>
+          <div className="bg-muted/50 min-h-[100vh] flex-1 rounded-xl md:min-h-min" />
+        </div>
+      </SideNav>
+    </>
   );
 }

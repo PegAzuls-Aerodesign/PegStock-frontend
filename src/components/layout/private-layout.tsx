@@ -19,7 +19,7 @@ export function PrivateLayout({
   return (
     <div className="flex size-full flex-col items-center gap-2 pt-[var(--h-header-breadcrumbs)]">
       <BreadcrumbsLayout>
-        <Breadcrumbs path={breadcrumbs} />
+        <Breadcrumbs items={breadcrumbs} />
       </BreadcrumbsLayout>
       <div className="container flex size-full flex-col shadow-2xl">
         <HeaderLayout
