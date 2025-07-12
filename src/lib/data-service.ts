@@ -83,7 +83,7 @@ export function useApiMutation<TEntrada = void, TSaida = void>({
   mutationFn,
   onSuccess,
   onError,
-  onFieldError,
+
   invalidateQueries,
   successMessage = "Operação realizada com sucesso!",
   errorMessage = "Não foi possível realizar a operação",

@@ -2,7 +2,7 @@ import axios, { type AxiosError } from "axios";
 import { tokenSalvoNoLocalStorage } from "../core/autenticacao/autenticacao.storage";
 
 const api = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_URL + "/v1",
+  baseURL: process.env.NEXT_PUBLIC_API_URL,
   validateStatus: (status) => status >= 200 && status < 300,
 });
 

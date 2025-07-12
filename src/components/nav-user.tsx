@@ -16,7 +16,9 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import { useAutenticacao } from "@/core/autenticacao/autenticacao";
 import { FaChevronDown, FaSignOutAlt, FaUserEdit } from "react-icons/fa";
+import { Button } from "./ui/button";
 
 const user = {
   name: "Matheus Vynicuis",
@@ -26,6 +28,8 @@ const user = {
 
 export function NavUser() {
   const { isMobile } = useSidebar();
+
+  const { sair } = useAutenticacao();
 
   const imageFallback = user.name.slice(0, 2).toUpperCase();
   return (
@@ -73,14 +77,25 @@ export function NavUser() {
             <DropdownMenuSeparator />
             <DropdownMenuGroup>
               <DropdownMenuItem>
-                <FaUserEdit />
-                Editar Perfil
+                <Button
+                  variant="ghost"
+                  className="text-accent-foreground w-full justify-start font-normal"
+                >
+                  <FaUserEdit />
+                  Editar perfil
+                </Button>
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              <FaSignOutAlt />
-              Log out
+              <Button
+                variant="ghost"
+                className="text-accent-foreground w-full justify-start font-normal"
+                onClick={sair}
+              >
+                <FaSignOutAlt />
+                Log out
+              </Button>
             </DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
