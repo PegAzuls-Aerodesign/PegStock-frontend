@@ -7,10 +7,12 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
 } from "@/components/ui/sidebar";
+import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FaDatabase, FaHome, FaShoppingCart, FaSignal } from "react-icons/fa";
 
-const projects = [
+const menuItems = [
   {
     name: "Home",
     url: "/home",
@@ -33,21 +35,28 @@ const projects = [
   },
 ];
 
-export function NavProjects() {
+export function NavSidebar() {
+  const pathname = usePathname();
   return (
     <SidebarGroup>
       <SidebarGroupLabel>PegAzuls</SidebarGroupLabel>
       <SidebarMenu>
-        {projects.map((item) => (
-          <SidebarMenuItem key={item.name}>
-            <SidebarMenuButton asChild>
-              <Link href={item.url}>
-                <item.icon title={`${item.name}`} />
-                <span>{item.name}</span>
-              </Link>
-            </SidebarMenuButton>
-          </SidebarMenuItem>
-        ))}
+        {menuItems.map((item) => {
+          const isActive = pathname.includes(item.url);
+          return (
+            <SidebarMenuItem key={item.name}>
+              <SidebarMenuButton
+                asChild
+                className={cn({ "bg-brand-blue-200": isActive })}
+              >
+                <Link href={item.url}>
+                  <item.icon title={`${item.name}`} />
+                  <span>{item.name}</span>
+                </Link>
+              </SidebarMenuButton>
+            </SidebarMenuItem>
+          );
+        })}
       </SidebarMenu>
     </SidebarGroup>
   );

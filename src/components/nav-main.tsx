@@ -14,30 +14,29 @@ import {
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
-import { HiOutlineChevronRight } from "react-icons/hi2";
+import { FaDatabase } from "react-icons/fa";
 
 const item = {
-  title: "Playground",
-  url: "#",
-  icon: HiOutlineChevronRight,
+  title: "Estoque",
+  url: "/estoque",
+  icon: FaDatabase,
   isActive: true,
   items: [
     {
-      title: "Sub Item 1",
-      url: "#sub-item-1",
-    },
-    {
-      title: "Sub Item 2",
-      url: "#sub-item-2",
+      title: "Materiais",
+      url: "/materiais",
     },
   ],
 };
 
 export function NavMain() {
+  const { setOpen } = useSidebar();
+
   return (
     <SidebarGroup>
-      <SidebarGroupLabel>Platform</SidebarGroupLabel>
+      <SidebarGroupLabel>PegAzuls</SidebarGroupLabel>
       <SidebarMenu>
         <Collapsible
           key={item.title}
@@ -47,10 +46,15 @@ export function NavMain() {
         >
           <SidebarMenuItem>
             <CollapsibleTrigger asChild>
-              <SidebarMenuButton tooltip={item.title}>
+              <SidebarMenuButton
+                tooltip={item.title}
+                onClick={() => {
+                  setOpen(true);
+                }}
+              >
                 {item.icon && <item.icon />}
                 <span>{item.title}</span>
-                <HiOutlineChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" />
+                {/* <FaDatabase className="ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90" /> */}
               </SidebarMenuButton>
             </CollapsibleTrigger>
             <CollapsibleContent>
