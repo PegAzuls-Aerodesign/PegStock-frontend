@@ -1,7 +1,8 @@
 import { ErrorMessage } from "@/components/form/error-message";
+import { Button } from "@/components/ui/button";
 import { Input, type InputProps } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import React from "react";
+import React, { useState } from "react";
 import {
   Controller,
   type Control,
@@ -9,6 +10,7 @@ import {
   type FieldValues,
   type PathValue,
 } from "react-hook-form";
+import { HiOutlineEye, HiOutlineEyeSlash } from "react-icons/hi2";
 import { useFormProps } from "../container";
 import { FloatingLabel } from "../floating-label";
 
@@ -127,6 +129,60 @@ export function ControlledAuthTextInput<
   mask,
   ...props
 }: ControlledAuthTextInputProps<TForm, TField>) {
+  const [showPassword, setShowPassword] = useState(false);
+  if (name === "password") {
+    return (
+      <Controller
+        control={control}
+        name={name}
+        render={({ field: { onChange, ...field }, fieldState }) => (
+          <div className="flex flex-col gap-1">
+            {label && (
+              <label
+                htmlFor={name}
+                className="text-sm font-bold text-slate-500"
+              >
+                {label}
+              </label>
+            )}
+            <TextInput
+              id={name}
+              onChange={(e) => {
+                onChange(mask ? mask(e.target.value) : e.target.value);
+              }}
+              {...field}
+              {...props}
+              type={showPassword ? "text" : "password"}
+              icon={
+                <Button
+                  variant="ghost"
+                  className="absolute top-0 right-0 hover:bg-transparent"
+                  size="icon"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? (
+                    <HiOutlineEyeSlash
+                      className="text-slate-500 hover:scale-105"
+                      size={20}
+                    />
+                  ) : (
+                    <HiOutlineEye
+                      className="text-slate-500 hover:scale-105"
+                      size={20}
+                    />
+                  )}
+                </Button>
+              }
+            />
+            {fieldState.error && (
+              <ErrorMessage>{fieldState.error.message}</ErrorMessage>
+            )}
+          </div>
+        )}
+      />
+    );
+  }
+
   return (
     <Controller
       control={control}
