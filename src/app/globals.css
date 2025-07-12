@@ -12,6 +12,16 @@
   --color-brand-blue-800: oklch(0.2 0.12 256.06);
   --color-brand-blue-900: oklch(0.12 0.08 256.06);
 
+  --color-brand-green-100: oklch(0.9454 0.0528 167.68);
+  --color-brand-green-200: oklch(0.9008 0.0938 171.02);
+  --color-brand-green-300: oklch(0.8159 0.1143 175.33);
+  --color-brand-green-400: oklch(0.7107 0.1103 181.36);
+  --color-brand-green-500: oklch(0.5692 0.0961 188.38);
+  --color-brand-green-600: oklch(0.5021 0.0832 198.12);
+  --color-brand-green-700: oklch(0.4194 0.0703 210.01);
+  --color-brand-green-800: oklch(0.3415 0.0611 222.26);
+  --color-brand-green-900: oklch(0.2836 0.0567 232.83);
+
   --color-brand-white-50: oklch(0.98 0 0);
   --color-brand-white-500: oklch(0.9551 0 0);
 
@@ -28,7 +38,7 @@
   --color-sidebar-primary-foreground: var(--color-brand-blue-100);
   --color-sidebar-accent: var(--color-brand-blue-300);
   --color-sidebar-accent-foreground: var(--color-brand-blue-500);
-  --color-sidebar-border: var(--color-brand-blue-200);
+  --color-sidebar-border: var(--color-slate-500);
   --color-sidebar-ring: var(--color-brand-blue-400);
 
   /* PopOver */

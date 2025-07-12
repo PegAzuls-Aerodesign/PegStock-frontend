@@ -17,6 +17,7 @@ const buttonVariants = cva(
         "destructive-ghost": "font-bold text-red-500 hover:bg-red-100",
         "header-button":
           "bg-white rounded-full border-1 border-gray-100 px-2 shadow-sm hover:bg-gray-50",
+        new: "bg-brand-green-500 text-white hover:bg-brand-green-600",
       },
       size: {
         default: "h-10 px-4 py-2",
