@@ -10,6 +10,8 @@ const buttonVariants = cva(
       variant: {
         primary:
           "border border-brand-blue-500 bg-brand-blue-500 text-white hover:border-brand-blue-600 hover:bg-brand-blue-600",
+        secondary:
+          "border border-slate-200 bg-white text-slate-900 hover:bg-slate-100",
         ghost:
           "hover:bg-slate-200/50 focus-visible:ring-0 focus-visible:ring-offset-0",
         input:
@@ -18,10 +20,13 @@ const buttonVariants = cva(
         "header-button":
           "bg-white rounded-full border-1 border-gray-100 px-2 shadow-sm hover:bg-gray-50",
         new: "bg-brand-green-500 text-white hover:bg-brand-green-600",
+        pagination:
+          "bg-brand-blue-300/50 text-slate-900 hover:bg-brand-blue-300",
       },
       size: {
         default: "h-10 px-4 py-2",
         icon: "size-10",
+        input: "min-h-10 px-3 py-2",
       },
     },
     defaultVariants: {

@@ -23,3 +23,5 @@ export function options<T, V extends Value>(
     }) ?? []
   );
 }
+
+export type NonEmptyArray<T> = [T, ...T[]];
