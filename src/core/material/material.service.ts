@@ -3,19 +3,15 @@ import {
   useApiMutation,
   useApiQuery,
 } from "@/lib/data-service";
-import {
-  deleteMaterial,
-  getMaterial,
-  simulateListMaterial,
-} from "./material.api";
+import { deleteMaterial, getMaterial, listMaterial } from "./material.api";
 import { type ListMaterialDto, type MaterialDto } from "./material.model";
 
 export const useMateriais = (options?: ApiQueryOptions<ListMaterialDto[]>) => {
   return useApiQuery<ListMaterialDto[]>({
     queryKey: ["materiais"],
-    queryFn: () => {
-      const response = simulateListMaterial();
-      return response;
+    queryFn: async () => {
+      const response = await listMaterial();
+      return response || [];
     },
     ...options,
   });

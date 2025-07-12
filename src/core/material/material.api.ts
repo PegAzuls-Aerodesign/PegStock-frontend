@@ -11,7 +11,7 @@ const base_url = "/material";
 
 export async function listMaterial(): Promise<ListMaterialDto[]> {
   const response = await api.get<ListMaterialDto[]>(base_url);
-  return response.data ?? [];
+  return response.data;
 }
 
 // TODO: Remover método quando API estiver pronta
