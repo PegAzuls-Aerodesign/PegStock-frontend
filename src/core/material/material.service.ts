@@ -1,5 +1,13 @@
-import { type ApiQueryOptions, useApiQuery } from "@/lib/data-service";
-import { getMaterial, simulateListMaterial } from "./material.api";
+import {
+  type ApiQueryOptions,
+  useApiMutation,
+  useApiQuery,
+} from "@/lib/data-service";
+import {
+  deleteMaterial,
+  getMaterial,
+  simulateListMaterial,
+} from "./material.api";
 import { type ListMaterialDto, type MaterialDto } from "./material.model";
 
 export const useMateriais = (options?: ApiQueryOptions<ListMaterialDto[]>) => {
@@ -25,6 +33,16 @@ export const useMaterial = (
       }
       return response;
     },
+    ...options,
+  });
+};
+
+export const useExcluirMaterial = (options?: ApiQueryOptions<number>) => {
+  return useApiMutation<number>({
+    mutationFn: deleteMaterial,
+    invalidateQueries: () => [["materiais"]],
+    successMessage: "Material excluído com sucesso!",
+    errorMessage: "Não foi possível excluir o material",
     ...options,
   });
 };
