@@ -24,13 +24,16 @@ type Props<TData extends Data<TCols>, TCols extends string> = Readonly<{
   actions?: (data: TData) => ReactNode;
   className?: string;
   hiddenCols?: (TCols | "Ações")[];
+  hidePagination?: { header?: boolean; footer?: boolean };
+  headerContent?: ReactNode;
 }>;
 
-const pageSizeOptions = [10, 20, 30, 40, 50] as const;
+const pageSizeOptions = [15, 25, 35, 45, 55] as const;
 
-export function DataTable<TData extends Data<TCols>, TCols extends string>(
-  props: Props<TData, TCols>,
-) {
+export function DataTable<TData extends Data<TCols>, TCols extends string>({
+  hidePagination = { header: true },
+  ...props
+}: Props<TData, TCols>) {
   const [pageSize, setPageSize] = useState<number>(pageSizeOptions[0]);
   const [search, setSearch] = useState("");
   const [currentPage, setCurrentPage] = useState(1);
@@ -109,11 +112,17 @@ export function DataTable<TData extends Data<TCols>, TCols extends string>(
           </div>
           <div className="flex items-center justify-end gap-2 lg:grow">
             {props.isLoading && <Spinner />}
-            <p className="text-xs font-medium">
+            <p
+              className={cn("text-xs font-medium", {
+                hidden: hidePagination?.header || false,
+              })}
+            >
               Informações apresentadas por página:
             </p>
             <Select
-              className="w-20"
+              className={cn("w-20", {
+                hidden: hidePagination?.header || false,
+              })}
               options={options(Array.from(pageSizeOptions), (n) => [
                 n,
                 n.toString(),
@@ -121,6 +130,7 @@ export function DataTable<TData extends Data<TCols>, TCols extends string>(
               value={pageSize}
               onChange={handlePageSizeChange}
             />
+            {props.headerContent}
           </div>
         </div>
         <div className="w-full overflow-auto">
@@ -197,7 +207,9 @@ export function DataTable<TData extends Data<TCols>, TCols extends string>(
                     </td>
                   ))}
                   {hasActions ? (
-                    <td className="px-2">{row && props.actions(row)}</td>
+                    <td className="px-2">
+                      {row && props.actions && props.actions(row)}
+                    </td>
                   ) : null}
                 </tr>
               ))}
