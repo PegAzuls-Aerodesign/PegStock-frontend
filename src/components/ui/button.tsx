@@ -22,6 +22,12 @@ const buttonVariants = cva(
         new: "bg-brand-green-500 text-white hover:bg-brand-green-600",
         pagination:
           "bg-brand-blue-300/50 text-slate-900 hover:bg-brand-blue-300",
+        "table-edit":
+          "border border-slate-300 bg-white text-xs text-slate-700 shadow hover:border-slate-500 hover:bg-slate-100 hover:text-slate-800",
+        "table-delete":
+          "border border-red-500 bg-red-100 text-xs text-red-500 shadow hover:border-red-700 hover:bg-red-200 hover:text-red-800",
+        destructive:
+          "border border-red-600 bg-red-600 text-white hover:border-red-700 hover:bg-red-700",
       },
       size: {
         default: "h-10 px-4 py-2",
