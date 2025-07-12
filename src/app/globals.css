@@ -36,6 +36,8 @@
   --color-popover-foreground: var(--color-brand-blue-500);
 
   /*  */
+  --color-primary: var(--color-brand-blue-500);
+  --color-primary-foreground: var(--color-brand-white-50);
 
   /* Dimensions */
   --h-header: 4rem;

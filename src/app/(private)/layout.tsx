@@ -9,7 +9,7 @@ export default function Layout({
 }>) {
   return (
     <React.Fragment>
-      <div className="flex-center h-screen w-screen">{children}</div>
+      <div>{children}</div>
     </React.Fragment>
   );
 }

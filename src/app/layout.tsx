@@ -1,4 +1,5 @@
 import { Toaster } from "@/components/ui/toaster";
+import { AutenticacaoProvider } from "@/core/autenticacao/autenticacao";
 import { QueryProvider } from "@/lib/query-provider";
 import { type Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -26,13 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <QueryProvider>
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
-      </body>
-    </html>
+      <AutenticacaoProvider>
         <html lang="pt-br">
           <body
             className={`${geistSans.variable} ${geistMono.variable} antialiased`}
@@ -41,6 +36,7 @@ export default function RootLayout({
             <Toaster />
           </body>
         </html>
+      </AutenticacaoProvider>
     </QueryProvider>
   );
 }
