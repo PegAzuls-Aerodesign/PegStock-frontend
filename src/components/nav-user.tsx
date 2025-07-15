@@ -90,11 +90,11 @@ export function NavUser() {
             <DropdownMenuItem>
               <Button
                 variant="ghost"
-                className="text-accent-foreground w-full justify-start font-normal"
+                className="w-full justify-start font-normal text-red-500"
                 onClick={sair}
               >
                 <FaSignOutAlt />
-                Log out
+                Logout
               </Button>
             </DropdownMenuItem>
           </DropdownMenuContent>
