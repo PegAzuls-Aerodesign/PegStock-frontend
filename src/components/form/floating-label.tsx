@@ -14,10 +14,10 @@ export const FloatingLabel: React.FC<Props> = (props) => {
       {props.label && (
         <label
           className={cn(
-            "pointer-events-none z-10 cursor-text whitespace-nowrap rounded-sm bg-white px-2 text-sm font-semibold leading-none text-black",
-            "absolute left-1.5 top-2 origin-[0] -translate-y-4 scale-75 transform",
+            "pointer-events-none z-10 cursor-text rounded-sm bg-white px-2 text-sm leading-none font-semibold whitespace-nowrap text-black",
+            "absolute top-2 left-1.5 origin-[0] -translate-y-4 scale-75 transform",
             {
-              "bg-linear-to-b from-white to-slate-100 text-opacity-70":
+              "text-opacity-70 bg-linear-to-b from-white to-slate-100":
                 props.disabled,
               "text-opacity-70": props.readOnly,
             },

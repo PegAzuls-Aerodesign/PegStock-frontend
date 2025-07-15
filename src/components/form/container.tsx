@@ -38,7 +38,7 @@ export const FormContainer = React.forwardRef<HTMLFormElement, Props>(
   (props, ref) => {
     return (
       <FormContext.Provider value={props}>
-        <div className="flex w-full flex-col border-y bg-white pb-8 lg:rounded-lg lg:border-x lg:pt-2">
+        <div className="border-brand-white-50 flex w-full flex-col border-y bg-white pb-8 lg:rounded-lg lg:border-x lg:pt-2">
           <div className="flex flex-row">
             <div className="flex grow flex-col gap-2 border-b border-slate-50 px-6 py-4 lg:px-14 lg:py-6">
               <h1 className="text-2xl font-semibold text-slate-600">
