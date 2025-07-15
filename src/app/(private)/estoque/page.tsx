@@ -5,12 +5,10 @@ import { MaterialTable } from "@/core/material/ui/material-table";
 export default function EstoquePage() {
   const items = [{ label: "Estoque", href: "/estoque" }];
   return (
-    <>
-      <SideNav items={items}>
-        <ContentLayout>
-          <MaterialTable />
-        </ContentLayout>
-      </SideNav>
-    </>
+    <SideNav items={items}>
+      <ContentLayout>
+        <MaterialTable />
+      </ContentLayout>
+    </SideNav>
   );
 }

@@ -1,25 +1,31 @@
 import { type Caixa, type Categoria } from "./material.utils";
 
 export interface MaterialDto {
-  cod: number;
+  cod: number | null;
   name: string;
-  quantitiy: number; // integer
-  consumerQuantity: number; // integer
+  quantity: number; // integer
+  consumerQuantity?: number | null; // integer
   category: Categoria;
   box: Caixa;
-  expirationDate: Date;
-  description?: string;
-  createdDate?: Date;
-  registerDate?: Date;
-  lastAddDate?: Date;
-  lastConsumitionDate?: Date;
+  expirationDate?: string; // ISO date string
+  description?: string | null;
+  createdDate?: string; // ISO date string
+  registerDate?: string; // ISO date string
+  lastAddDate?: string; // ISO date string
+  lastConsumitionDate?: string; // ISO date string
   borrowing: Array<BorrowingDto>;
 }
 
 export interface ListMaterialDto
   extends Pick<
     MaterialDto,
-    "cod" | "name" | "quantitiy" | "category" | "box" | "expirationDate"
+    | "cod"
+    | "name"
+    | "quantity"
+    | "category"
+    | "box"
+    | "expirationDate"
+    | "description"
   > {}
 
 export interface CreateMaterialDto
@@ -27,11 +33,12 @@ export interface CreateMaterialDto
     MaterialDto,
     | "name"
     | "description"
-    | "quantitiy"
+    | "quantity"
     | "consumerQuantity"
     | "box"
     | "createdDate"
     | "expirationDate"
+    | "category"
   > {}
 
 export interface UpdateMaterialDto extends CreateMaterialDto {}
@@ -40,8 +47,8 @@ interface BorrowingDto {
   cod: number;
   quantity: number; // integer
   borrower: string;
-  expirationDate: Date;
-  createdDate: Date;
+  expirationDate: string; // ISO date string
+  createdDate: string; // ISO date string
   returned: boolean;
   responsible: string;
 }

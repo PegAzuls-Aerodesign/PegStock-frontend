@@ -1,3 +1,4 @@
+import { type MaterialSchema } from "./material.form";
 import { type ListMaterialDto } from "./material.model";
 import { Caixa } from "./material.utils";
 
@@ -5,41 +6,65 @@ export const listMaterialData: ListMaterialDto[] = [
   {
     cod: 1,
     name: "Material A",
-    expirationDate: new Date("2024-12-31"),
-    quantitiy: 100,
+    expirationDate: "2024-12-31",
+    quantity: 100,
     box: Caixa.BASTAO_COLA_QUENTE,
-    category: "Consumível",
+    category: "CONSUMIVEL",
   },
   {
     cod: 2,
     name: "Material B",
-    expirationDate: new Date("2025-01-15"),
-    quantitiy: 50,
+    expirationDate: "2025-01-15",
+    quantity: 50,
     box: Caixa.FERRAMENTAS_ELETRICAS,
-    category: "Permanente",
+    category: "PERMANENTE",
   },
   {
     cod: 3,
     name: "Material C",
-    expirationDate: new Date("2023-11-30"),
-    quantitiy: 0,
+    expirationDate: "2023-11-30",
+    quantity: 0,
     box: Caixa.FERRAMENTAS_CORTANTES,
-    category: "Sem uso",
+    category: "SEM_USO",
   },
   {
     cod: 4,
     name: "Material D",
-    expirationDate: new Date("2024-06-20"),
-    quantitiy: 200,
+    expirationDate: "2024-06-20",
+    quantity: 200,
     box: Caixa.FERRAMENTAS_ELETRICAS,
-    category: "Consumível",
+    category: "CONSUMIVEL",
   },
   {
     cod: 5,
     name: "Material E",
-    expirationDate: new Date("2025-03-10"),
-    quantitiy: 75,
+    expirationDate: "2025-03-10",
+    quantity: 75,
     box: Caixa.EPI_TI,
-    category: "Permanente",
+    category: "PERMANENTE",
   },
 ];
+
+export const emptyMaterialSchema: MaterialSchema = {
+  cod: null,
+  name: "",
+  quantity: 0,
+  consumerQuantity: 0,
+  box: Caixa.BASTAO_COLA_QUENTE,
+  category: "CONSUMIVEL",
+  expirationDate: undefined,
+  description: null,
+  createdDate: new Date().toISOString().split("T")[0],
+  registerDate: undefined,
+  lastAddDate: undefined,
+  lastConsumitionDate: undefined,
+};
+
+export const emptyMaterialDto: ListMaterialDto = {
+  cod: null,
+  name: "",
+  quantity: 0,
+  box: Caixa.BASTAO_COLA_QUENTE,
+  category: "CONSUMIVEL",
+  expirationDate: undefined,
+};
