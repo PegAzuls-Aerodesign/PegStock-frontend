@@ -18,7 +18,7 @@ function BreadcrumbList({ className, ...props }: React.ComponentProps<"ol">) {
       data-slot="breadcrumb-list"
       className={cn(
         // "text-muted-brand-blue-500 flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5",
-        "flex flex-wrap items-center gap-1.5 text-sm break-words text-red-500 sm:gap-2.5",
+        "text-brand-blue-500 flex flex-wrap items-center gap-1.5 text-sm break-words sm:gap-2.5",
         className,
       )}
       {...props}
@@ -133,7 +133,9 @@ export const Breadcrumbs: React.FC<BreadcrumbsProps> = ({ items }) => (
           <React.Fragment key={item.label}>
             <BreadcrumbItem className={cn({ "hidden md:block": !isLastItem })}>
               {isLastItem ? (
-                <BreadcrumbPage>{item.label}</BreadcrumbPage>
+                <BreadcrumbPage className="text-brand-blue-700 text-xl">
+                  {item.label}
+                </BreadcrumbPage>
               ) : (
                 <BreadcrumbLink href={item.href || "#"}>
                   {item.label}

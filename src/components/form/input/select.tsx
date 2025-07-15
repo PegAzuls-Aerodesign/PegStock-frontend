@@ -1,3 +1,4 @@
+import { ErrorMessage } from "@/components/form/error-message";
 import {
   Select as SelectBase,
   type SelectProps as PropsBase,
@@ -12,7 +13,6 @@ import {
   type PathValue,
 } from "react-hook-form";
 import { useFormProps } from "../container";
-import { ErrorMessage } from "../error-message";
 import { FloatingLabel } from "../floating-label";
 
 interface SelectProps<TValue extends Value> extends PropsBase<TValue> {

@@ -82,6 +82,7 @@ export const ControlledTextInput = <
   control,
   name,
   label,
+  isRequired,
   ...props
 }: ControlledTextInputProps<TForm, TField>) => {
   return (
@@ -93,8 +94,7 @@ export const ControlledTextInput = <
           <TextInput
             label={
               <span className={fieldState.error && "text-red-500"}>
-                {label}{" "}
-                {props.isRequired && <span className="text-red-500">*</span>}
+                {label} {isRequired && <span className="text-red-500">*</span>}
               </span>
             }
             {...field}
