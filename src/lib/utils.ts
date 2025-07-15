@@ -25,3 +25,33 @@ export function options<T, V extends Value>(
 }
 
 export type NonEmptyArray<T> = [T, ...T[]];
+
+export function isPastDate(date: string | Date | null | undefined): boolean {
+  if (!date) {
+    return false;
+  }
+  const parsedDate = new Date(date);
+  return !isNaN(parsedDate.getTime()) && parsedDate < new Date();
+}
+
+export function isFutureDateRequired(
+  date: string | Date | null | undefined,
+): boolean {
+  if (!date) {
+    return false;
+  }
+  return !isPastDate(date);
+}
+
+export function isFutureOptional(
+  date: string | Date | null | undefined,
+): boolean {
+  if (!date) {
+    return true; // Se a data for nula ou indefinida, consideramos como válida
+  }
+  return isFutureDateRequired(date);
+}
+
+export function capitalizar(palavra: string) {
+  return palavra.charAt(0).toUpperCase() + palavra.slice(1).toLowerCase();
+}
