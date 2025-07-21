@@ -13,14 +13,10 @@ import {
 } from "./material.api";
 import { type MaterialSchema } from "./material.form";
 import { MaterialMapper } from "./material.mapper";
-import {
-  type ListMaterialDto,
-  type MaterialDto,
-  type UpdateMaterialDto,
-} from "./material.model";
+import { type MaterialDto, type UpdateMaterialDto } from "./material.model";
 
-export const useMateriais = (options?: ApiQueryOptions<ListMaterialDto[]>) => {
-  return useApiQuery<ListMaterialDto[]>({
+export const useMateriais = (options?: ApiQueryOptions<MaterialDto[]>) => {
+  return useApiQuery<MaterialDto[]>({
     queryKey: ["materiais"],
     queryFn: async () => {
       const response = await listMaterial();
@@ -52,7 +48,7 @@ export const useCriarMaterial = (
 ) => {
   return useApiMutation({
     mutationFn: async (material) => {
-      await createMaterial(MaterialMapper.schemaToCreateDto(material));
+      await createMaterial(MaterialMapper.schemaToDto(material));
     },
     invalidateQueries: () => [["materiais"]],
     successMessage: "Material criado com sucesso!",

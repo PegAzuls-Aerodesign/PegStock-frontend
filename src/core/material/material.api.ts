@@ -1,27 +1,18 @@
 import { api } from "@/lib/api";
-import { listMaterialData } from "./material.mock";
+
 import {
   type CreateMaterialDto,
-  type ListMaterialDto,
   type MaterialDto,
   type UpdateMaterialDto,
 } from "./material.model";
 
 const base_url = "/material";
 
-export async function listMaterial(): Promise<ListMaterialDto[]> {
-  const response = await api.get<ListMaterialDto[]>(base_url);
+export async function listMaterial(): Promise<MaterialDto[]> {
+  const response = await api.get<MaterialDto[]>(base_url);
   return response.data;
 }
 
-// TODO: Remover método quando API estiver pronta
-export async function simulateListMaterial(): Promise<ListMaterialDto[]> {
-  return await new Promise((resolve) => {
-    setTimeout(() => {
-      resolve(listMaterialData);
-    }, 300);
-  });
-}
 export async function getMaterial(cod: number): Promise<MaterialDto | null> {
   const response = await api.get<MaterialDto>(`${base_url}/${cod}`);
   return response.data;
@@ -45,3 +36,12 @@ export async function updateMaterial(
 export async function deleteMaterial(cod: number): Promise<void> {
   await api.delete(`${base_url}/${cod}`);
 }
+
+// TODO: Remover método quando API estiver pronta
+// export async function simulateListMaterial(): Promise<ListMaterialDto[]> {
+//   return await new Promise((resolve) => {
+//     setTimeout(() => {
+//       resolve(listMaterialData);
+//     }, 300);
+//   });
+// }

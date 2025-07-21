@@ -1,8 +1,7 @@
-import { type MaterialSchema } from "./material.form";
-import { type ListMaterialDto } from "./material.model";
+import { type MaterialDto } from "./material.model";
 import { Caixa } from "./material.utils";
 
-export const listMaterialData: ListMaterialDto[] = [
+export const listMaterialData: MaterialDto[] = [
   {
     cod: 1,
     name: "Material A",
@@ -10,6 +9,9 @@ export const listMaterialData: ListMaterialDto[] = [
     quantity: 100,
     box: Caixa.BASTAO_COLA_QUENTE,
     category: "CONSUMIVEL",
+    description: null,
+    brand: null,
+    status: [],
   },
   {
     cod: 2,
@@ -18,6 +20,9 @@ export const listMaterialData: ListMaterialDto[] = [
     quantity: 50,
     box: Caixa.FERRAMENTAS_ELETRICAS,
     category: "PERMANENTE",
+    description: null,
+    brand: null,
+    status: [],
   },
   {
     cod: 3,
@@ -26,6 +31,9 @@ export const listMaterialData: ListMaterialDto[] = [
     quantity: 0,
     box: Caixa.FERRAMENTAS_CORTANTES,
     category: "SEM_USO",
+    description: null,
+    brand: null,
+    status: [],
   },
   {
     cod: 4,
@@ -34,6 +42,9 @@ export const listMaterialData: ListMaterialDto[] = [
     quantity: 200,
     box: Caixa.FERRAMENTAS_ELETRICAS,
     category: "CONSUMIVEL",
+    description: null,
+    brand: null,
+    status: [],
   },
   {
     cod: 5,
@@ -42,29 +53,8 @@ export const listMaterialData: ListMaterialDto[] = [
     quantity: 75,
     box: Caixa.EPI_TI,
     category: "PERMANENTE",
+    description: null,
+    brand: null,
+    status: [],
   },
 ];
-
-export const emptyMaterialSchema: MaterialSchema = {
-  cod: null,
-  name: "",
-  quantity: 0,
-  consumerQuantity: 0,
-  box: Caixa.BASTAO_COLA_QUENTE,
-  category: "CONSUMIVEL",
-  expirationDate: undefined,
-  description: null,
-  createdDate: new Date().toISOString().split("T")[0],
-  registerDate: undefined,
-  lastAddDate: undefined,
-  lastConsumitionDate: undefined,
-};
-
-export const emptyMaterialDto: ListMaterialDto = {
-  cod: null,
-  name: "",
-  quantity: 0,
-  box: Caixa.BASTAO_COLA_QUENTE,
-  category: "CONSUMIVEL",
-  expirationDate: undefined,
-};

@@ -1,7 +1,7 @@
 "use client";
 
 import { FormContainer, type FormProps } from "@/components/form/container";
-import { ControlledGenericInput } from "@/components/form/input/generic-input";
+import { ControlledDateInput } from "@/components/form/input/date-input";
 import { ControlledNumberInput } from "@/components/form/input/number-input";
 import { ControlledSelect } from "@/components/form/input/select";
 import { ControlledTextInput } from "@/components/form/input/text-input";
@@ -64,21 +64,17 @@ export const MaterialForm: React.FC<MaterialProps> = ({ form }) => {
         />
       </FormSection>
       <FormSection title="Informações Adicionais">
-        <ControlledGenericInput
+        <ControlledTextInput
           control={form.control}
-          name="createdDate"
-          label="Data de Criação"
-          placeholder="DD/MM/AAAA"
-          type="date"
-          isRequired
-          disabled
+          name="brand"
+          label="Marca"
+          placeholder="Digite a marca do material"
         />
-        <ControlledGenericInput
+        <ControlledDateInput
           control={form.control}
           name="expirationDate"
           label="Data de Validade"
           placeholder="DD/MM/AAAA"
-          type="date"
           isRequired
         />
       </FormSection>

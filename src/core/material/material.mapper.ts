@@ -1,39 +1,30 @@
 import { type MaterialSchema } from "./material.form";
-import {
-  type CreateMaterialDto,
-  type ListMaterialDto,
-  type MaterialDto,
-} from "./material.model";
+import { type MaterialDto } from "./material.model";
 
-const schemaToDto = (
-  schema: MaterialSchema,
-): MaterialDto | ListMaterialDto | CreateMaterialDto => ({
+const schemaToDto = (schema: MaterialSchema): MaterialDto => ({
   ...schema,
-  borrowing: [],
-  cod: schema.cod ?? null,
+  name: schema.name,
+  description: schema.description ?? null,
+  brand: schema.brand ?? null,
+  quantity: schema.quantity,
+  category: schema.category,
+  box: schema.box,
+  status: schema.status,
+  expirationDate: schema.expirationDate ?? null,
 });
 
-const schemaToCreateDto = (schema: MaterialSchema): CreateMaterialDto => ({
-  ...schema,
-  createdDate: schema.createdDate || new Date().toISOString().split("T")[0],
-});
-
-const schemaToUpdateDto: (schema: MaterialSchema) => CreateMaterialDto =
-  schemaToCreateDto;
-
-export const dtoToSchema = (dto: ListMaterialDto): MaterialSchema => ({
-  cod: dto.cod ?? null,
-  name: dto.name,
-  quantity: dto.quantity,
-  consumerQuantity: 0, // TODO: Handle consumerQuantity
-  box: dto.box,
-  category: dto.category,
+export const dtoToSchema = (dto: MaterialDto): MaterialSchema => ({
+  ...dto,
   description: dto.description ?? null,
+  brand: dto.brand ?? null,
+  quantity: dto.quantity,
+  category: dto.category,
+  box: dto.box,
+  status: dto.status,
+  expirationDate: dto.expirationDate ?? undefined,
 });
 
 export const MaterialMapper = {
   schemaToDto,
-  schemaToCreateDto,
-  schemaToUpdateDto,
   dtoToSchema,
 };

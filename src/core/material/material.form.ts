@@ -10,40 +10,31 @@ import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import z from "zod";
 import { MaterialMapper } from "./material.mapper";
-import { type ListMaterialDto } from "./material.model";
-import { Caixa, Categoria } from "./material.utils";
+import { type MaterialDto } from "./material.model";
+import { Caixa, Categoria, MaterialStatusSchema } from "./material.utils";
 
 export const materialSchema = z.object({
   cod: zNumberNullish,
   name: zStringRequired,
   description: zStringNullish,
+  brand: zStringNullish,
   quantity: zNumberNonNegativeRequired.int(
     "Quantidade deve ser um número inteiro",
   ),
-  consumerQuantity: zNumberNonNegativeRequired.int(
-    "Quantidade do consumidor deve ser um número inteiro",
-  ),
-  box: z.enum(Caixa, { error: "Caixa obrigatória" }),
   category: z.enum(Categoria, { error: "Categoria obrigatória" }),
+  box: z.enum(Caixa, { error: "Caixa obrigatória" }),
   expirationDate: z
     .string()
     .refine(isFutureOptional, {
       message: "Data de validade deve ser no passado",
     })
     .optional(),
-  createdDate: z.string({ error: "Data de criação obrigatória" }).optional(),
-  registerDate: z.string({ error: "Data de registro obrigatória" }).optional(),
-  lastAddDate: z
-    .string({ error: "Data da última adição obrigatória" })
-    .optional(),
-  lastConsumitionDate: z
-    .string({ error: "Data do último consumo obrigatória" })
-    .optional(),
+  status: z.array(MaterialStatusSchema),
 });
 
 export type MaterialSchema = z.infer<typeof materialSchema>;
 
-export const useMaterialForm = (material?: ListMaterialDto) => {
+export const useMaterialForm = (material?: MaterialDto) => {
   const form = useForm<MaterialSchema>({
     resolver: zodResolver(materialSchema),
     mode: "onBlur",
@@ -65,6 +56,5 @@ export const useMaterialForm = (material?: ListMaterialDto) => {
 };
 
 const defaultValues = {
-  createdDate: new Date().toISOString().split("T")[0],
-  consumerQuantity: 0,
+  status: [],
 };
