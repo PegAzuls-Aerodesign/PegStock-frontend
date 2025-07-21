@@ -140,24 +140,15 @@ export function useApiMutation<TEntrada = void, TSaida = void>({
       if (
         error.response &&
         typeof error.response.data === "object" &&
-        "errors" in error.response.data
+        "message" in error.response.data
       ) {
-        // const erro = error.response.data as ApiErrorResponse;
-
-        // if (onFieldError) {
-        //   for (const err of erro.errors) {
-        //     if (err.name !== 'error') {
-        //       onFieldError(err.name as 'root', {
-        //         type: 'manual',
-        //         message: err.message,
-        //       });
-        //     }
-        //   }
-        // }
+        const message =
+          (error.response.data as { message?: string })?.message ||
+          errorDescription;
 
         toast({
           title: errorMessage,
-          // description: erro.errors.map((error) => error.message).join(', '),
+          description: message,
           variant: "destructive",
         });
         onError?.(error, _);
