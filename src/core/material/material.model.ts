@@ -4,7 +4,7 @@ import {
   type MaterialStatus,
 } from "./material.utils";
 
-export interface MaterialBase {
+interface MaterialBase {
   cod?: number | null;
   name: string;
   description: string | null;

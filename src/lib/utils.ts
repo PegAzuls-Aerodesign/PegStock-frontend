@@ -55,3 +55,12 @@ export function isFutureOptional(
 export function capitalizar(palavra: string) {
   return palavra.charAt(0).toUpperCase() + palavra.slice(1).toLowerCase();
 }
+
+// Função para formatar a data no padrão pt-BR
+export function formatDate(date: string | Date) {
+  return new Date(date).toLocaleDateString("pt-BR", {
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  });
+}

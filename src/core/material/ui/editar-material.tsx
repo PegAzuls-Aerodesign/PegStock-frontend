@@ -30,7 +30,7 @@ export const EditarMaterial: React.FC<Props> = ({ id }) => {
     if (material) {
       await editarMaterial.mutateAsync({
         id,
-        material: MaterialMapper.schemaToUpdateDto(material),
+        material: MaterialMapper.schemaToDto(material),
       });
     }
   });

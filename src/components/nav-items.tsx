@@ -10,7 +10,13 @@ import {
 import { cn } from "@/lib/utils";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaDatabase, FaHome, FaShoppingCart, FaSignal } from "react-icons/fa";
+import {
+  FaDatabase,
+  FaHandHolding,
+  FaHome,
+  FaShoppingCart,
+  FaSignal,
+} from "react-icons/fa";
 
 const menuItems = [
   {
@@ -22,6 +28,11 @@ const menuItems = [
     name: "Estoque",
     url: "/estoque",
     icon: FaDatabase,
+  },
+  {
+    name: "Emprestimos",
+    url: "/emprestimos",
+    icon: FaHandHolding,
   },
   {
     name: "Dashboard",
