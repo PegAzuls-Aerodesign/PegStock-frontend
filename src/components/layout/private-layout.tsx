@@ -39,7 +39,7 @@ const BreadcrumbsLayout: React.FC<
   }>
 > = ({ children }) => {
   return (
-    <div className="fixed top-[var(--h-header)] z-50 container flex items-center p-2 px-8 lg:px-16">
+    <div className="fixed top-[var(--h-header)] z-25 container flex items-center p-2 px-8 lg:px-16">
       {children}
     </div>
   );

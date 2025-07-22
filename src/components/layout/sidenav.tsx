@@ -19,7 +19,7 @@ export const SideNav: React.FC<Props> = ({ items, children }) => {
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset>
-        <header className="z-51 flex h-16 shrink-0 items-center gap-2 bg-white shadow transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-18">
+        <header className="z-25 flex h-16 shrink-0 items-center gap-2 bg-white shadow transition-[width,height] ease-linear group-has-data-[collapsible=icon]/sidebar-wrapper:h-18">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             <Separator
