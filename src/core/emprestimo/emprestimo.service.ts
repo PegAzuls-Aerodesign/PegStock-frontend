@@ -54,7 +54,11 @@ export const useCriarEmprestimo = (
     mutationFn: async (emprestimo: EmprestimoSchema) => {
       await createEmprestimo(EmprestimoMapper.schemaToDto(emprestimo));
     },
-    invalidateQueries: () => [["emprestimos"]],
+    invalidateQueries: (emprestimo) => [
+      ["emprestimos"],
+      ["materiais"],
+      ["material", emprestimo.materialCod],
+    ],
     successMessage: "Emprestimo criado com sucesso!",
     errorMessage: "Não foi possível criar o emprestimo",
     errorDescription:
@@ -75,7 +79,12 @@ export const useEditarEmprestimo = (
     mutationFn: async ({ id, emprestimo }) => {
       await updateEmprestimo(id, EmprestimoMapper.schemaToDto(emprestimo));
     },
-    invalidateQueries: ({ id }) => [["emprestimos"], ["emprestimo", id]],
+    invalidateQueries: ({ id, emprestimo }) => [
+      ["emprestimos"],
+      ["emprestimo", id],
+      ["materiais"],
+      ["material", emprestimo.materialCod],
+    ],
     successMessage: "Emprestimo editado com sucesso!",
     errorMessage: "Não foi possível editar o emprestimo",
     ...options,
@@ -85,7 +94,7 @@ export const useEditarEmprestimo = (
 export const useExcluirEmprestimo = (options?: ApiMutationOptions<number>) => {
   return useApiMutation<number>({
     mutationFn: deleteEmprestimo,
-    invalidateQueries: () => [["emprestimos"]],
+    invalidateQueries: () => [["emprestimos"], ["materiais"], ["material"]],
     successMessage: "Emprestimo excluído com sucesso!",
     errorMessage: "Não foi possível excluir o emprestimo",
     ...options,
@@ -97,7 +106,7 @@ export const useDevolverEmprestimo = (options?: ApiMutationOptions<number>) => {
     mutationFn: async (id) => {
       return await devolverEmprestimo(id);
     },
-    invalidateQueries: () => [["emprestimos"]],
+    invalidateQueries: () => [["emprestimos"], ["materiais"], ["material"]],
     successMessage: "Emprestimo devolvido com sucesso!",
     errorMessage: "Não foi possível devolver o emprestimo",
     ...options,

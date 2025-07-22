@@ -1,9 +1,11 @@
 "use client";
 
 import { DestructiveAlert } from "@/components/ui/alert-dialog";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table";
 import { formatDate } from "@/lib/utils";
+import { parse } from "date-fns";
 import { LucideRotateCcw } from "lucide-react";
 import Link from "next/link";
 import { HiOutlinePencilAlt } from "react-icons/hi";
@@ -75,6 +77,27 @@ export const EmprestimoTable = () => {
           </DestructiveAlert>
         </div>
       )}
+      customRender={{
+        Status: (row) => {
+          const hoje = new Date();
+          const dataValidade = parse(
+            row["Data de Validade"],
+            "dd/MM/yyyy",
+            new Date(),
+          );
+
+          return row.Status === "Devolvido" ? (
+            <Badge variant="available">{row.Status}</Badge>
+          ) : (
+            <>
+              {dataValidade < hoje && (
+                <Badge variant="unavailable">Atrasado</Badge>
+              )}
+              <Badge variant="warning">{row.Status}</Badge>
+            </>
+          );
+        },
+      }}
     />
   );
 };

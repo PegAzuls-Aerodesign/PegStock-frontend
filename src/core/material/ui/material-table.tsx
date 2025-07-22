@@ -1,6 +1,7 @@
 "use client";
 
 import { DestructiveAlert } from "@/components/ui/alert-dialog";
+import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table";
 import { formatDate } from "@/lib/utils";
@@ -69,6 +70,28 @@ export const MaterialTable = () => {
           </DestructiveAlert>
         </div>
       )}
+      customRender={{
+        Status: (row) => {
+          return (
+            <div className="flex gap-1">
+              {row.Status.split(", ").map((status, index) => (
+                <Badge
+                  key={index}
+                  variant={
+                    status === "Disponível"
+                      ? "available"
+                      : status === "Indisponível"
+                        ? "unavailable"
+                        : "warning"
+                  }
+                >
+                  {status}
+                </Badge>
+              ))}
+            </div>
+          );
+        },
+      }}
     />
   );
 };
