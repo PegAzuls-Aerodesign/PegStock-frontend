@@ -4,11 +4,11 @@ import { ControlledNumberInput } from "@/components/form/input/number-input";
 import { Button } from "@/components/ui/button";
 import { useMateriaisOptions } from "@/core/material/material.utils";
 import { DialogClose } from "@radix-ui/react-dialog";
-import { useCommandMaterialForm } from "../command-material.form";
+import { useCommandMaterialForm } from "../command.form";
 import {
   useCommandAddMaterial,
   useCommandRemoveMaterial,
-} from "../command-material.service";
+} from "../command.service";
 
 type OperationType = "add" | "remove";
 
@@ -45,8 +45,9 @@ export const CommandMaterialForm: React.FC<Props> = ({ type, ...props }) => {
   const materialOptions = useMateriaisOptions();
 
   const title = type === "add" ? "Adicionar Material" : "Remover Material";
-  const isLoading = adicionarMaterial.isPending || removerMaterial.isPending;
+  const isLoading = materialOptions.isLoading;
   const isSubmitting = adicionarMaterial.isPending || removerMaterial.isPending;
+
   return (
     <FormContainer
       title={title}
@@ -71,6 +72,7 @@ export const CommandMaterialForm: React.FC<Props> = ({ type, ...props }) => {
           isLoading ? "Carregando..." : "Digite o código do material"
         }
         {...materialOptions}
+        isRequired
         disabled
       />
       <ControlledNumberInput
@@ -80,7 +82,7 @@ export const CommandMaterialForm: React.FC<Props> = ({ type, ...props }) => {
         placeholder={
           isLoading ? "Carregando..." : "Digite a quantidade do material"
         }
-        min={0}
+        min={1}
         isRequired
       />
     </FormContainer>

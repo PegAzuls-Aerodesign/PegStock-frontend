@@ -7,6 +7,7 @@ import { ControlledSelect } from "@/components/form/input/select";
 import { ControlledTextInput } from "@/components/form/input/text-input";
 import { ControlledTextArea } from "@/components/form/input/textarea";
 import { FormSection } from "@/components/form/section";
+import { CommandBorrowDialog } from "@/core/command/ui/command-borrow-dialog";
 import { CommandMaterialDialog } from "@/core/command/ui/command-material-dialog";
 import React, { Fragment } from "react";
 import { type MaterialSchema } from "../material.form";
@@ -140,6 +141,11 @@ const MaterialFooter: React.FC<{
 }> = (props) => {
   return (
     <div className="flex w-full justify-end gap-4">
+      <CommandBorrowDialog
+        materialCod={props.materialCod}
+        onSuccess={props.refetch}
+        onCancel={props.onCancel}
+      />
       <CommandMaterialDialog
         materialCod={props.materialCod}
         onSuccess={props.refetch}

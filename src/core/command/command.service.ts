@@ -1,9 +1,13 @@
 import { type ApiMutationOptions, useApiMutation } from "@/lib/data-service";
 import {
   commandAddMaterial,
+  commandBorrow,
   commandRemoveMaterial,
-} from "./command-material.api";
-import { type CommandMaterialSchema } from "./command-material.form";
+} from "./command.api";
+import {
+  type CommandBorrowSchema,
+  type CommandMaterialSchema,
+} from "./command.form";
 
 export const useCommandAddMaterial = (
   options?: ApiMutationOptions<CommandMaterialSchema>,
@@ -35,6 +39,23 @@ export const useCommandRemoveMaterial = (
     ],
     successMessage: "Material removido com sucesso!",
     errorMessage: "Não foi possível remover o material",
+    ...options,
+  });
+};
+
+export const useCommandBorrow = (
+  options?: ApiMutationOptions<CommandBorrowSchema>,
+) => {
+  return useApiMutation({
+    mutationFn: async (material) => {
+      return await commandBorrow(material);
+    },
+    invalidateQueries: (schema) => [
+      ["materiais"],
+      ["material", schema?.materialCod],
+    ],
+    successMessage: "Material emprestado com sucesso!",
+    errorMessage: "Não foi possível emprestar o material",
     ...options,
   });
 };
