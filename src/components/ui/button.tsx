@@ -27,7 +27,7 @@ const buttonVariants = cva(
         "table-delete":
           "border border-red-500 bg-red-100 text-xs text-red-500 shadow hover:border-red-700 hover:bg-red-200 hover:text-red-800",
         destructive:
-          "border border-red-600 bg-red-600 text-white hover:border-red-700 hover:bg-red-700",
+          "border border-red-500 bg-red-500 text-white hover:border-red-600 hover:bg-red-600",
       },
       size: {
         default: "h-10 px-4 py-2",

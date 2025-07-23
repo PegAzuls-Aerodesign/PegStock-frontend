@@ -7,8 +7,7 @@ import { ControlledSelect } from "@/components/form/input/select";
 import { ControlledTextInput } from "@/components/form/input/text-input";
 import { ControlledTextArea } from "@/components/form/input/textarea";
 import { FormSection } from "@/components/form/section";
-import { AddMaterialDialog } from "@/core/command/ui/command-add-material-dialog";
-import { RemoveMaterialDialog } from "@/core/command/ui/command-remove-material-dialog";
+import { CommandMaterialDialog } from "@/core/command/ui/command-material-dialog";
 import React, { Fragment } from "react";
 import { type MaterialSchema } from "../material.form";
 import { caixaOptions, categoriaOptions } from "../material.utils";
@@ -141,15 +140,17 @@ const MaterialFooter: React.FC<{
 }> = (props) => {
   return (
     <div className="flex w-full justify-end gap-4">
-      <RemoveMaterialDialog
+      <CommandMaterialDialog
         materialCod={props.materialCod}
         onSuccess={props.refetch}
         onCancel={props.onCancel}
+        type="remove"
       />
-      <AddMaterialDialog
+      <CommandMaterialDialog
         materialCod={props.materialCod}
         onSuccess={props.refetch}
         onCancel={props.onCancel}
+        type="add"
       />
     </div>
   );
