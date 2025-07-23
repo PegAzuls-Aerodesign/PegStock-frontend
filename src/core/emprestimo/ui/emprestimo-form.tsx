@@ -12,9 +12,12 @@ import { type EmprestimoSchema } from "../emprestimo.form";
 
 interface Props extends FormProps<EmprestimoSchema> {}
 
-interface EmprestimoProps extends Pick<Props, "form"> {}
+interface EmprestimoProps extends Props {}
 
-export const EmprestimoForm: React.FC<EmprestimoProps> = ({ form }) => {
+export const EmprestimoForm: React.FC<EmprestimoProps> = ({
+  form,
+  ...props
+}) => {
   const cod = form.getValues("cod");
 
   const materiaisOptions = useMateriaisOptions();
@@ -44,6 +47,7 @@ export const EmprestimoForm: React.FC<EmprestimoProps> = ({ form }) => {
           name="expirationDate"
           label="Data de Validade"
           placeholder="DD/MM/AAAA"
+          disabled={props.readOnly}
           isRequired
         />
         <ControlledTextInput
@@ -67,13 +71,10 @@ export const EmprestimoForm: React.FC<EmprestimoProps> = ({ form }) => {
   );
 };
 
-export const EmprestimoContainerForm: React.FC<Props> = ({
-  form,
-  ...props
-}: Props) => {
+export const EmprestimoContainerForm: React.FC<Props> = (props: Props) => {
   return (
     <FormContainer {...props}>
-      <EmprestimoForm form={form} />
+      <EmprestimoForm {...props} />
     </FormContainer>
   );
 };

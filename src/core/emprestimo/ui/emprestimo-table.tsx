@@ -4,12 +4,12 @@ import { DestructiveAlert } from "@/components/ui/alert-dialog";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table";
-import { formatDate } from "@/lib/utils";
+import { cn, formatDate } from "@/lib/utils";
 import { parse } from "date-fns";
 import { LucideRotateCcw } from "lucide-react";
 import Link from "next/link";
 import { HiOutlinePencilAlt } from "react-icons/hi";
-import { HiMiniTrash } from "react-icons/hi2";
+import { HiMiniTrash, HiOutlineEye } from "react-icons/hi2";
 import {
   useDevolverEmprestimo,
   useEmprestimos,
@@ -55,27 +55,44 @@ export const EmprestimoTable = () => {
         </Button>
       }
       actions={(emprestimo) => (
-        <div className="flex gap-2">
-          <Button
-            variant="secondary"
-            size="icon"
-            onClick={() => devolverEmprestimo.mutate(emprestimo?.id)}
+        <>
+          <div
+            className={cn("flex gap-2", {
+              hidden: emprestimo?.Status === "Devolvido",
+            })}
           >
-            <LucideRotateCcw size={16} />
-          </Button>
-          <Button variant="secondary" size="icon" asChild>
-            <Link href={`/emprestimos/${emprestimo?.id}/editar`}>
-              <HiOutlinePencilAlt size={18} />
-            </Link>
-          </Button>
-          <DestructiveAlert
-            onConfirm={() => excluirEmprestimo.mutate(emprestimo?.id)}
-          >
-            <Button variant="table-delete" size="icon">
-              <HiMiniTrash size={16} />
+            <Button
+              variant="secondary"
+              size="icon"
+              onClick={() => devolverEmprestimo.mutate(emprestimo?.id)}
+            >
+              <LucideRotateCcw size={16} />
             </Button>
-          </DestructiveAlert>
-        </div>
+            <Button variant="secondary" size="icon" asChild>
+              <Link href={`/emprestimos/${emprestimo?.id}/editar`}>
+                <HiOutlinePencilAlt size={18} />
+              </Link>
+            </Button>
+            <DestructiveAlert
+              onConfirm={() => excluirEmprestimo.mutate(emprestimo?.id)}
+            >
+              <Button variant="table-delete" size="icon">
+                <HiMiniTrash size={16} />
+              </Button>
+            </DestructiveAlert>
+          </div>
+          <div
+            className={cn("flex gap-2", {
+              hidden: emprestimo?.Status !== "Devolvido",
+            })}
+          >
+            <Button variant="secondary" size="icon" asChild>
+              <Link href={`/emprestimos/${emprestimo?.id}/visualizar`}>
+                <HiOutlineEye size={18} />
+              </Link>
+            </Button>
+          </div>
+        </>
       )}
       customRender={{
         Status: (row) => {

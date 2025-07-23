@@ -8,9 +8,10 @@ import { EmprestimoContainerForm } from "./emprestimo-form";
 
 interface Props {
   id: number;
+  readOnly?: boolean;
 }
 
-export const EditarEmprestimo: React.FC<Props> = ({ id }) => {
+export const EditarEmprestimo: React.FC<Props> = ({ id, readOnly }) => {
   const emprestimo = useEmprestimo(id, { gcTime: Infinity });
 
   const form = useEmprestimoForm(emprestimo?.data);
@@ -35,15 +36,22 @@ export const EditarEmprestimo: React.FC<Props> = ({ id }) => {
     }
   });
 
+  const title = readOnly ? "Visualizar Emprestimo" : "Editar Emprestimo";
+  const subtitle = readOnly
+    ? "Visualize os dados do emprestimo."
+    : "Preencha os dados do emprestimo para editá-lo ao sistema.";
+
   return (
     <EmprestimoContainerForm
       form={form}
-      title="Editar Emprestimo"
-      subtitle="Preencha os dados do emprestimo para editá-lo."
+      title={title}
+      subtitle={subtitle}
       onSubmit={handleSubmit}
       isLoading={editarEmprestimo.isPending}
       isSubmitting={editarEmprestimo.isPending}
       onCancel={() => form.reset()}
+      readOnly={readOnly}
+      hideFooter={readOnly}
     />
   );
 };
