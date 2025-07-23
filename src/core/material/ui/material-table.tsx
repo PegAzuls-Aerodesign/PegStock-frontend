@@ -7,7 +7,7 @@ import { DataTable } from "@/components/ui/data-table";
 import { formatDate } from "@/lib/utils";
 import Link from "next/link";
 import { HiOutlinePencilAlt } from "react-icons/hi";
-import { HiMiniTrash } from "react-icons/hi2";
+import { HiMiniTrash, HiOutlineEye } from "react-icons/hi2";
 import { useExcluirMaterial, useMateriais } from "../material.service";
 import {
   caixaLabels,
@@ -56,8 +56,12 @@ export const MaterialTable = () => {
       actions={(material) => (
         <div className="flex gap-2">
           <Button variant="secondary" size="icon" asChild>
+            <Link href={`/estoque/${material?.id}/visualizar`}>
+              <HiOutlineEye size={18} />
+            </Link>
+          </Button>
+          <Button variant="secondary" size="icon" asChild>
             <Link href={`/estoque/${material?.id}/editar`}>
-              {/* <HiOutlineEye size={18} /> */}
               <HiOutlinePencilAlt size={18} />
             </Link>
           </Button>

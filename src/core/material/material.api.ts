@@ -36,12 +36,3 @@ export async function updateMaterial(
 export async function deleteMaterial(cod: number): Promise<void> {
   await api.delete(`${base_url}/${cod}`);
 }
-
-// TODO: Remover método quando API estiver pronta
-// export async function simulateListMaterial(): Promise<ListMaterialDto[]> {
-//   return await new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve(listMaterialData);
-//     }, 300);
-//   });
-// }

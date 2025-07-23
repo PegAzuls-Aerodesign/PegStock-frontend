@@ -8,9 +8,10 @@ import { MaterialContainerForm } from "./material-form";
 
 interface Props {
   id: number;
+  readOnly?: boolean;
 }
 
-export const EditarMaterial: React.FC<Props> = ({ id }) => {
+export const EditarMaterial: React.FC<Props> = ({ id, readOnly }) => {
   const material = useMaterial(id, { gcTime: Infinity });
 
   const form = useMaterialForm(material?.data);
@@ -35,15 +36,23 @@ export const EditarMaterial: React.FC<Props> = ({ id }) => {
     }
   });
 
+  const title = readOnly ? "Visualizar Material" : "Editar Material";
+  const subtitle = readOnly
+    ? "Visualize os dados do material no estoque."
+    : "Preencha os dados do material para editá-lo ao estoque.";
+
   return (
     <MaterialContainerForm
       form={form}
-      title="Editar Material"
-      subtitle="Preencha os dados do material para editá-lo ao estoque."
+      title={title}
+      subtitle={subtitle}
       onSubmit={handleSubmit}
-      isLoading={editarMaterial.isPending}
+      isLoading={material.isPending}
       isSubmitting={editarMaterial.isPending}
       onCancel={() => form.reset()}
+      refetch={material.refetch}
+      readOnly={readOnly}
+      hideFooter={readOnly}
     />
   );
 };

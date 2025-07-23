@@ -7,15 +7,17 @@ import { ControlledSelect } from "@/components/form/input/select";
 import { ControlledTextInput } from "@/components/form/input/text-input";
 import { ControlledTextArea } from "@/components/form/input/textarea";
 import { FormSection } from "@/components/form/section";
+import { AddMaterialDialog } from "@/core/command/ui/command-add-material-dialog";
+import { RemoveMaterialDialog } from "@/core/command/ui/command-remove-material-dialog";
 import React, { Fragment } from "react";
 import { type MaterialSchema } from "../material.form";
 import { caixaOptions, categoriaOptions } from "../material.utils";
 
 interface Props extends FormProps<MaterialSchema> {}
 
-interface MaterialProps extends Pick<Props, "form"> {}
+interface MaterialProps extends Props {}
 
-export const MaterialForm: React.FC<MaterialProps> = ({ form }) => {
+export const MaterialForm: React.FC<MaterialProps> = ({ form, ...props }) => {
   return (
     <Fragment>
       <FormSection title="Dados do Material">
@@ -23,31 +25,47 @@ export const MaterialForm: React.FC<MaterialProps> = ({ form }) => {
           control={form.control}
           name="name"
           label="Nome"
-          placeholder="Digite o nome do material"
+          placeholder={
+            props.isLoading ? "Carregando..." : "Digite o nome do material"
+          }
+          disabled={props.readOnly || props.isLoading}
           isRequired
         />
         <ControlledSelect
           control={form.control}
           name="category"
           label="Categoria"
-          placeholder="Selecione a categoria do material"
+          placeholder={
+            props.isLoading
+              ? "Carregando..."
+              : "Selecione a categoria do material"
+          }
           options={categoriaOptions}
+          disabled={props.readOnly || props.isLoading}
           isRequired
         />
         <ControlledNumberInput
           control={form.control}
           name="quantity"
           label="Quantidade"
-          placeholder="Digite a quantidade do material"
+          placeholder={
+            props.isLoading
+              ? "Carregando..."
+              : "Digite a quantidade do material"
+          }
           min={0}
+          disabled={props.readOnly || props.isLoading}
           isRequired
         />
         <ControlledSelect
           control={form.control}
           name="box"
           label="Caixa"
-          placeholder="Selecione a caixa do material"
+          placeholder={
+            props.isLoading ? "Carregando..." : "Selecione a caixa do material"
+          }
           options={caixaOptions}
+          disabled={props.readOnly || props.isLoading}
           isRequired
         />
       </FormSection>
@@ -59,7 +77,12 @@ export const MaterialForm: React.FC<MaterialProps> = ({ form }) => {
           control={form.control}
           name="description"
           label="Descrição"
-          placeholder="Digite uma descrição do material"
+          placeholder={
+            props.isLoading
+              ? "Carregando..."
+              : "Digite uma descrição do material"
+          }
+          disabled={props.readOnly || props.isLoading}
           rows={5}
         />
       </FormSection>
@@ -68,28 +91,66 @@ export const MaterialForm: React.FC<MaterialProps> = ({ form }) => {
           control={form.control}
           name="brand"
           label="Marca"
-          placeholder="Digite a marca do material"
+          placeholder={
+            props.isLoading ? "Carregando..." : "Digite a marca do material"
+          }
+          disabled={props.readOnly || props.isLoading}
         />
         <ControlledDateInput
           control={form.control}
           name="expirationDate"
           label="Data de Validade"
-          placeholder="DD/MM/AAAA"
-          isRequired
+          placeholder={props.isLoading ? "Carregando..." : "DD/MM/AAAA"}
+          disabled={props.readOnly || props.isLoading}
         />
       </FormSection>
-      {/* <FormErrorsContainer form={form} /> */}
     </Fragment>
   );
 };
 
-export const MaterialContainerForm: React.FC<Props> = ({
-  form,
-  ...props
-}: Props) => {
+interface DialogProps extends Props {
+  refetch?: () => void;
+}
+
+export const MaterialContainerForm: React.FC<DialogProps> = (props) => {
+  const materialCod = props.form.watch("cod") || undefined;
   return (
-    <FormContainer {...props}>
-      <MaterialForm form={form} />
+    <FormContainer
+      {...props}
+      footerContent={
+        props.hideFooter && (
+          <MaterialFooter
+            materialCod={materialCod}
+            isLoading={props.isLoading}
+            refetch={props.refetch}
+            onCancel={props.onCancel}
+          />
+        )
+      }
+    >
+      <MaterialForm {...props} />
     </FormContainer>
+  );
+};
+
+const MaterialFooter: React.FC<{
+  materialCod?: number;
+  isLoading?: boolean;
+  refetch?: () => void;
+  onCancel?: () => void;
+}> = (props) => {
+  return (
+    <div className="flex w-full justify-end gap-4">
+      <RemoveMaterialDialog
+        materialCod={props.materialCod}
+        onSuccess={props.refetch}
+        onCancel={props.onCancel}
+      />
+      <AddMaterialDialog
+        materialCod={props.materialCod}
+        onSuccess={props.refetch}
+        onCancel={props.onCancel}
+      />
+    </div>
   );
 };
