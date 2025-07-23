@@ -1,5 +1,5 @@
 import { api } from "@/lib/api";
-import { type CredenciaisDTO, type TokenDto } from "./autenticacao.models";
+import { type CredenciaisDTO, type TokenDto } from "./autenticacao.model";
 
 const ENDPOINT = "/users/login";
 

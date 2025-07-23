@@ -1,6 +1,6 @@
 import { type ApiMutationOptions, useApiMutation } from "@/lib/data-service";
 import { entrar } from "./autenticacao.api";
-import { type CredenciaisDTO, type TokenDto } from "./autenticacao.models";
+import { type CredenciaisDTO, type TokenDto } from "./autenticacao.model";
 import {
   removerTokenDoLocalStorage,
   salvarTokenNoLocalStorage,

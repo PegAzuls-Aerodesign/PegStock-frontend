@@ -1,4 +1,4 @@
-import { type TokenDto } from "./autenticacao.models";
+import { type TokenDto } from "./autenticacao.model";
 
 export function tokenSalvoNoLocalStorage(): TokenDto | null {
   if ("window" in globalThis) {

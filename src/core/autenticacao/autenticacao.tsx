@@ -11,7 +11,7 @@ import {
   useMemo,
   useState,
 } from "react";
-import { type TokenDto } from "./autenticacao.models";
+import { type TokenDto } from "./autenticacao.model";
 import { useEntrar } from "./autenticacao.service";
 import {
   removerTokenDoLocalStorage,
