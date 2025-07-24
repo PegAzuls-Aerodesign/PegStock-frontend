@@ -50,7 +50,7 @@ export const EmprestimoTable = () => {
       }
       isLoading={emprestimos.isLoading}
       headerContent={
-        <Button variant="primary" className="w-32" asChild>
+        <Button variant="primary" asChild>
           <Link href="/emprestimos/criar">Novo emprestimo</Link>
         </Button>
       }

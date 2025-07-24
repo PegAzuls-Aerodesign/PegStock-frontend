@@ -64,7 +64,7 @@ export const Container = ({
             { hidden: !isLoading },
           )}
         >
-          <Spinner className="text-brand-blue-500 size-12" />
+          <Spinner className="size-12" />
         </div>
       </div>
 
