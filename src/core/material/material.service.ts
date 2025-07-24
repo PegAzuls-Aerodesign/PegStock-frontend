@@ -9,6 +9,9 @@ import {
   deleteMaterial,
   getMaterial,
   listMaterial,
+  mostAvailableMaterial,
+  mostConsumedMaterial,
+  nearestExpirationMaterial,
   updateMaterial,
 } from "./material.api";
 import { type MaterialSchema } from "./material.form";
@@ -84,6 +87,45 @@ export const useExcluirMaterial = (options?: ApiMutationOptions<number>) => {
     invalidateQueries: () => [["materiais"]],
     successMessage: "Material excluído com sucesso!",
     errorMessage: "Não foi possível excluir o material",
+    ...options,
+  });
+};
+
+export const useMostConsumedMaterial = (
+  options?: ApiQueryOptions<MaterialDto>,
+) => {
+  return useApiQuery<MaterialDto>({
+    queryKey: ["most_consumed_material"],
+    queryFn: async () => {
+      const response = await mostConsumedMaterial();
+      return response;
+    },
+    ...options,
+  });
+};
+
+export const useNearestExpirationMaterial = (
+  options?: ApiQueryOptions<MaterialDto>,
+) => {
+  return useApiQuery<MaterialDto>({
+    queryKey: ["nearest_expiration_material"],
+    queryFn: async () => {
+      const response = await nearestExpirationMaterial();
+      return response;
+    },
+    ...options,
+  });
+};
+
+export const useMostAvailableMaterial = (
+  options?: ApiQueryOptions<MaterialDto>,
+) => {
+  return useApiQuery<MaterialDto>({
+    queryKey: ["most_available_material"],
+    queryFn: async () => {
+      const response = await mostAvailableMaterial();
+      return response;
+    },
     ...options,
   });
 };

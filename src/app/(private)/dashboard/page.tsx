@@ -1,13 +1,40 @@
+"use client";
+
 import { Container } from "@/components/form/container";
 import { ContentLayout } from "@/components/layout/content-layout";
 import { SideNav } from "@/components/layout/sidenav";
 import { DashboardCard } from "@/core/dashboard/ui/dashboard-card";
 import { DashboardChart } from "@/core/dashboard/ui/dashboard-chart";
+import {
+  useMostAvailableMaterial,
+  useMostConsumedMaterial,
+  useNearestExpirationMaterial,
+} from "@/core/material/material.service";
+import { formatDate } from "@/lib/utils";
 import { CalendarClockIcon } from "lucide-react";
 import { FaBox, FaChartLine, FaMoneyBill } from "react-icons/fa";
 
 export default function DashboardPage() {
+  const { data: maisConsumido } = useMostConsumedMaterial();
+  const { data: maisDisponivel } = useMostAvailableMaterial();
+  const { data: proximoVencimento } = useNearestExpirationMaterial();
+
   const items = [{ label: "Dashboard", href: "/dashboard" }];
+
+  const maisConsumidoUrl = maisConsumido
+    ? `/estoque/${maisConsumido.cod}/visualizar`
+    : undefined;
+  const maisDisponivelUrl = maisDisponivel
+    ? `/estoque/${maisDisponivel.cod}/visualizar`
+    : undefined;
+  const proximoVencimentoUrl = proximoVencimento
+    ? `/estoque/${proximoVencimento.cod}/visualizar`
+    : undefined;
+
+  const dataValidade = proximoVencimento?.expirationDate
+    ? formatDate(proximoVencimento.expirationDate)
+    : "N/A";
+
   return (
     <>
       <SideNav items={items}>
@@ -16,15 +43,19 @@ export default function DashboardPage() {
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               <DashboardCard
                 title="Material mais consumido"
-                description="Madeira balsa"
-                footer="Rodapé do Cartão"
+                description={maisConsumido?.name || "Nenhum material consumido"}
+                footer={`Total: ${maisConsumido?.quantity || 0} unidades`}
                 icon={<FaBox className="size-8 text-yellow-600" />}
+                url={maisConsumidoUrl}
               />
               <DashboardCard
                 title="Material mais disponível"
-                description="Madeira balsa"
-                footer="Rodapé do Cartão"
+                description={
+                  maisDisponivel?.name || "Nenhum material disponível"
+                }
+                footer={`Total: ${maisDisponivel?.quantity || 0} unidades`}
                 icon={<FaChartLine className="size-8 text-green-600" />}
+                url={maisDisponivelUrl}
               />
               <DashboardCard
                 title="Material mais caro da lista"
@@ -34,9 +65,13 @@ export default function DashboardPage() {
               />
               <DashboardCard
                 title="Próximo da data de validade"
-                description="Máscara"
-                footer="Validade: 01/01/2025"
+                description={
+                  proximoVencimento?.name ||
+                  "Nenhum material próximo da validade"
+                }
+                footer={`Data de validade: ${dataValidade}`}
                 icon={<CalendarClockIcon className="size-8 text-red-600" />}
+                url={proximoVencimentoUrl}
               />
             </div>
           </Container>

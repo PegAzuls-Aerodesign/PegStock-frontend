@@ -36,3 +36,18 @@ export async function updateMaterial(
 export async function deleteMaterial(cod: number): Promise<void> {
   await api.delete(`${base_url}/${cod}`);
 }
+
+export async function mostConsumedMaterial(): Promise<MaterialDto> {
+  const response = await api.get<MaterialDto>(`${base_url}/most_consumed`);
+  return response.data;
+}
+
+export async function nearestExpirationMaterial(): Promise<MaterialDto> {
+  const response = await api.get<MaterialDto>(`${base_url}/nearest_expiration`);
+  return response.data;
+}
+
+export async function mostAvailableMaterial(): Promise<MaterialDto> {
+  const response = await api.get<MaterialDto>(`${base_url}/most_available`);
+  return response.data;
+}
