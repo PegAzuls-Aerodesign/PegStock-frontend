@@ -10,3 +10,9 @@ export const chartConfig = {
     color: "var(--color-brand-blue-500)",
   },
 } satisfies ChartConfig;
+
+export interface DashboardItem {
+  month: string;
+  totalConsumption: number;
+  totalAddition: number;
+}

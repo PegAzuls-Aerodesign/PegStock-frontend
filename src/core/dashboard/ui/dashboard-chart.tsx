@@ -18,12 +18,21 @@ import {
 } from "@/components/ui/chart";
 import { chartData } from "../dashboard-mock";
 import { chartConfig } from "../dashboard.model";
+import { useDashboard } from "../dashboard.service";
+import { getShortMonthName } from "../dashboard.utils";
 
 export const DashboardChart: React.FC = () => {
+  const { data } = useDashboard();
+  const formattedData = data?.map((item) => ({
+    month: getShortMonthName(item.month),
+    totalConsumption: item.totalConsumption,
+    totalAddition: item.totalAddition,
+  }));
+
   const totalConsumption = () =>
-    chartData.reduce((acc, curr) => acc + curr.totalConsumption, 0);
+    data?.reduce((acc, curr) => acc + curr.totalConsumption, 0);
   const totalAddition = () =>
-    chartData.reduce((acc, curr) => acc + curr.totalAddition, 0);
+    data?.reduce((acc, curr) => acc + curr.totalAddition, 0);
 
   return (
     <Card className="bg-white">
@@ -33,7 +42,11 @@ export const DashboardChart: React.FC = () => {
       </CardHeader>
       <CardContent>
         <ChartContainer config={chartConfig}>
-          <BarChart accessibilityLayer data={chartData}>
+          <BarChart
+            accessibilityLayer
+            data={formattedData || chartData}
+            margin={{ top: 16, right: 16, bottom: 16, left: 16 }}
+          >
             <CartesianGrid vertical={false} />
             <YAxis
               tickLine={false}
