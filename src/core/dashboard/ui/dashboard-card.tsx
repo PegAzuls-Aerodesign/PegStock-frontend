@@ -24,18 +24,28 @@ export const DashboardCard: React.FC<Props> = ({
   icon,
 }) => {
   const card = (
-    <Card className="w-full bg-white text-center">
+    <Card className="h-full w-full bg-white text-center">
       <CardHeader>
-        <CardTitle>{title}</CardTitle>
-        <CardDescription>{description}</CardDescription>
+        <CardTitle className="text-brand-blue-600 text-lg font-semibold">
+          {title}
+        </CardTitle>
+        <CardDescription className="text-slate-600">
+          {description}
+        </CardDescription>
       </CardHeader>
       <CardContent className="self-center">{icon}</CardContent>
-      <CardFooter className="self-center">{footer}</CardFooter>
+      <CardFooter className="self-center text-xs text-slate-700">
+        {footer}
+      </CardFooter>
     </Card>
   );
 
   if (url) {
-    return <Link href={url}>{card}</Link>;
+    return (
+      <Link href={url} className="transition-opacity hover:invert-2">
+        {card}
+      </Link>
+    );
   }
 
   return card;

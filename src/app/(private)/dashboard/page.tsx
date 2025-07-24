@@ -40,11 +40,11 @@ export default function DashboardPage() {
       <SideNav items={items}>
         <ContentLayout className="flex w-full flex-col items-center gap-4">
           <Container className="bg-transparent">
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-4">
               <DashboardCard
                 title="Material mais consumido"
                 description={maisConsumido?.name || "Nenhum material consumido"}
-                footer={`Total: ${maisConsumido?.quantity || 0} unidades`}
+                footer={`${maisConsumido?.quantity || 0}`}
                 icon={<FaBox className="size-8 text-yellow-600" />}
                 url={maisConsumidoUrl}
               />
@@ -53,7 +53,7 @@ export default function DashboardPage() {
                 description={
                   maisDisponivel?.name || "Nenhum material disponível"
                 }
-                footer={`Total: ${maisDisponivel?.quantity || 0} unidades`}
+                footer={`${maisDisponivel?.quantity || 0}`}
                 icon={<FaChartLine className="size-8 text-green-600" />}
                 url={maisDisponivelUrl}
               />
@@ -69,7 +69,7 @@ export default function DashboardPage() {
                   proximoVencimento?.name ||
                   "Nenhum material próximo da validade"
                 }
-                footer={`Data de validade: ${dataValidade}`}
+                footer={`${dataValidade}`}
                 icon={<CalendarClockIcon className="size-8 text-red-600" />}
                 url={proximoVencimentoUrl}
               />
