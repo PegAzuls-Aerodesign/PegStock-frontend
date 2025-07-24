@@ -32,7 +32,7 @@
   --color-accent-foreground: var(--color-brand-blue-500);
 
   /* Sidebar */
-  --color-sidebar: var(--color-brand-white-50);
+  --color-sidebar: var(--color-white);
   --color-sidebar-foreground: var(--color-brand-blue-500);
   --color-sidebar-primary: var(--color-brand-blue-500);
   --color-sidebar-primary-foreground: var(--color-brand-blue-100);
