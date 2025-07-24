@@ -4,7 +4,6 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
   DropdownMenuContent,
-  DropdownMenuGroup,
   DropdownMenuItem,
   DropdownMenuLabel,
   DropdownMenuSeparator,
@@ -17,7 +16,7 @@ import {
   useSidebar,
 } from "@/components/ui/sidebar";
 import { useAutenticacao } from "@/core/autenticacao/autenticacao";
-import { FaChevronDown, FaSignOutAlt, FaUserEdit } from "react-icons/fa";
+import { FaChevronDown, FaSignOutAlt } from "react-icons/fa";
 import { Button } from "./ui/button";
 
 const user = {
@@ -75,7 +74,7 @@ export function NavUser() {
               </div>
             </DropdownMenuLabel>
             <DropdownMenuSeparator />
-            <DropdownMenuGroup>
+            {/* <DropdownMenuGroup>
               <DropdownMenuItem>
                 <Button
                   variant="ghost"
@@ -85,7 +84,7 @@ export function NavUser() {
                   Editar perfil
                 </Button>
               </DropdownMenuItem>
-            </DropdownMenuGroup>
+            </DropdownMenuGroup> */}
             <DropdownMenuSeparator />
             <DropdownMenuItem>
               <Button
